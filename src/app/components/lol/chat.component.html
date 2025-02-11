@@ -1,0 +1,6 @@
+<div class="chat-container">
+  <h2>Chat con Ollama</h2>
+  <textarea [(ngModel)]="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+  <button (click)="enviarMensaje()">Enviar</button>
+  <p><strong>Respuesta:</strong> {{ respuesta }}</p>
+</div>
