@@ -11,6 +11,6 @@ export class OllamaService {
   constructor(private http: HttpClient) {}
 
   generarTexto(mensaje: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { model: "llama3.2", prompt: mensaje, stream: false });
+    return this.http.post<any>(this.apiUrl, { model: "nuevo1", prompt: mensaje, stream: false });
   }
 }

@@ -14,6 +14,7 @@ import { OllamaService } from '../../services/ollama.service';
 export class ChatComponent {
   mensaje = '';
   respuesta = '';
+  isLoading = false; // Controla la carga
 
   private ollamaService = inject(OllamaService);
 
@@ -21,14 +22,17 @@ export class ChatComponent {
     if (this.mensaje.trim()) {
       console.log("Enviando mensaje:", this.mensaje); // <-- LOG
 
+      this.isLoading = true;  // Mostrar el indicador de carga
       this.ollamaService.generarTexto(this.mensaje).subscribe(
         (data) => {
           console.log("Respuesta del backend:", data); // <-- LOG
           this.respuesta = data.response || "Error en la respuesta";
+          this.isLoading = false; // Ocultar el indicador de carga
         },
         (error) => {
           console.error("Error en la petición:", error); // <-- LOG
           this.respuesta = "Error en la comunicación con el servidor";
+          this.isLoading = false; // Ocultar el indicador de carga
         }
       );
     }

@@ -1,3 +1,14 @@
+/* Variables para espaciado y colores */
+:root {
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-hover-shadow: rgba(0, 0, 0, 0.15);
+  --primary-bg: #ffffff;
+  --card-bg: #f8f9fa;
+  --text-color: #333;
+  --highlight-color: #007bff;
+}
+
+/* Contenedor de tarjetas */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Diseño responsivo */
@@ -7,18 +18,23 @@
   justify-items: center; /* Centra las tarjetas en cada columna */
 }
 
+/* Estilos generales de la tarjeta */
 p-card {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un diseño moderno */
+  background-color: var(--card-bg); /* Fondo más suave */
+  box-shadow: 0px 4px 6px var(--card-shadow); /* Sombra para un diseño moderno */
   border-radius: 8px; /* Bordes redondeados */
   overflow: hidden; /* Evita que el contenido sobresalga */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efecto al pasar el cursor */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease; /* Efecto al pasar el cursor */
 }
 
+/* Efectos al pasar el cursor sobre la tarjeta */
 p-card:hover {
   transform: translateY(-5px); /* Desplaza la tarjeta ligeramente hacia arriba */
-  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15); /* Sombra más grande al pasar el cursor */
+  box-shadow: 0px 8px 12px var(--card-hover-shadow); /* Sombra más grande al pasar el cursor */
+  background-color: #f1f1f1; /* Color de fondo más claro en hover */
 }
 
+/* Flexbox para contenido dentro de la tarjeta */
 .flex {
   display: flex;
 }
@@ -41,4 +57,58 @@ p-card:hover {
 
 .gap-3 {
   gap: 1rem;
+}
+
+/* Estilos de los textos dentro de las tarjetas */
+p-card h3,
+p-card p {
+  color: var(--text-color);
+  margin: 10px 20px;
+}
+
+p-card h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+p-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Agregar estilo al botón dentro de las tarjetas */
+p-card button {
+  background-color: var(--highlight-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+p-card button:hover {
+  background-color: #0056b3;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustar el tamaño de las tarjetas */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  p-card h3 {
+    font-size: 1.2rem; /* Ajustar tamaño de texto en dispositivos pequeños */
+  }
+
+  p-card p {
+    font-size: 0.9rem;
+  }
 }

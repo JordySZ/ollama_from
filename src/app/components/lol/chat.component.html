@@ -1,6 +1,28 @@
 <div class="chat-container">
   <h2>Chat con Ollama</h2>
   <textarea [(ngModel)]="mensaje" placeholder="Escribe tu mensaje..."></textarea>
-  <button (click)="enviarMensaje()">Enviar</button>
+  <button (click)="enviarMensaje()" [disabled]="isLoading || !mensaje.trim()">Enviar</button>
+  
+  <!-- Indicador de carga -->
+  <div *ngIf="isLoading" class="spinner"></div>
+
   <p><strong>Respuesta:</strong> {{ respuesta }}</p>
 </div>
+
+<style>
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
